@@ -186,16 +186,18 @@ body.imm-on #chaps,body.imm-on #legende,body.imm-on #plat{display:none}
 #tout-couper:hover{background:rgba(232,105,15,.2)}
 #tout-couper[aria-pressed="true"]{background:var(--o);color:#fff8e8;border-color:#7a3506}
 #tout-couper:focus-visible{outline:2px solid var(--o);outline-offset:2px}
-#btn-hd{display:flex;align-items:center;justify-content:center;gap:.4em;font-size:13.5px;font-weight:700;line-height:1.2;color:#fff8e8;background:#1d1510;border:1px solid #1d1510;border-radius:3px;padding:5px 8px;min-height:32px;cursor:pointer;text-decoration:none;text-align:left}
-#btn-hd:hover{background:#3a2412}
-#btn-hd:focus-visible{outline:2px solid var(--o);outline-offset:2px}
+#groupe-son{display:inline-flex;align-items:center;gap:clamp(5px,1.2vw,12px)}
+#btn-hd{display:inline-flex;align-items:center;gap:.4em;box-sizing:border-box;font:inherit;color:#f3e7cf;background:rgba(243,231,207,.08);border:1px solid rgba(243,231,207,.25);border-radius:3px;padding:5px 8px;min-height:32px;cursor:pointer;text-decoration:none;white-space:nowrap}
+#btn-hd:hover{background:rgba(243,231,207,.18)}
+#btn-hd:focus-visible{outline:2px solid #f0c674;outline-offset:2px}
 #btn-hd[aria-busy="true"]{opacity:.7;cursor:progress}
-#hd-etat{margin:0;font-size:12px;line-height:1.3;color:#6b4a24;text-align:center}
+#hd-etat{position:fixed;z-index:60;right:max(16px,env(safe-area-inset-right,0px));max-width:min(270px,calc(100vw - 32px));box-sizing:border-box;margin:0;padding:6px 10px;font-size:12.5px;line-height:1.3;color:#2a1a0c;background:#f3e7cf;border:1px solid #1d1510;border-radius:3px;text-align:center}
 .titre-musique{margin:0;font-size:11.5px;font-style:italic;color:#6b4a24;text-align:center}
+.titre-musique a{color:inherit}
 @media (prefers-reduced-motion:reduce){#menu-son{animation:none}}
 #numero{min-width:6.5em;text-align:center;font-variant-numeric:tabular-nums}
 #chaps{display:flex;gap:5px;flex-wrap:wrap;justify-content:center}
-@media (max-width:640px){#barre{font-size:12px}#barre button{padding:4px 7px}}
+@media (max-width:640px){#barre{font-size:12px}#barre button,#btn-hd{padding:4px 7px}}
 </style>
 
 <div id="salle"><div id="livre" role="region" aria-label="Livre à système : Shizen to Sosen no Michi"></div></div>
@@ -206,8 +208,10 @@ body.imm-on #chaps,body.imm-on #legende,body.imm-on #plat{display:none}
   <span id="chaps"></span>
   <span id="legende"><span class="sceau" aria-hidden="true"></span>se manipule</span>
   <button id="plat" aria-pressed="false" title="Coucher les plans pour lire à plat">Lire à plat</button>
-  <button id="btn-son" aria-expanded="false" aria-controls="menu-son" aria-label="Réglages du son" title="Réglages du son"><img src="data:image/webp;base64,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" alt="">Son</button>
+  <span id="groupe-son"><button id="btn-son" aria-expanded="false" aria-controls="menu-son" aria-label="Réglages du son" title="Réglages du son"><img src="data:image/webp;base64,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" alt="">Son</button>
+  <a id="btn-hd" role="button" href="Shizen to Sosen no Michi - images HD.zip" download="Shizen to Sosen no Michi - images HD.zip" aria-label="Télécharger toutes les images en HD" title="Télécharger toutes les images en HD"><span class="sceau" aria-hidden="true">⤓</span><span id="hd-lib">Images HD</span></a></span>
 </nav>
+<p id="hd-etat" aria-live="polite" hidden></p>
 <section id="menu-son" role="dialog" aria-label="Réglages du son" hidden>
   <div class="rouleau"></div>
   <div class="contenu">
@@ -216,9 +220,7 @@ body.imm-on #chaps,body.imm-on #legende,body.imm-on #plat{display:none}
     <div class="ligne"><label for="v-ambiance">Ambiance</label><output id="o-ambiance"></output><input id="v-ambiance" type="range" min="0" max="100" step="1"></div>
     <div class="ligne"><label for="v-bruitages">Bruitages</label><output id="o-bruitages"></output><input id="v-bruitages" type="range" min="0" max="100" step="1"></div>
     <button id="tout-couper" aria-pressed="false">Tout couper</button>
-    <a id="btn-hd" role="button" href="Shizen to Sosen no Michi - images HD.zip" download="Shizen to Sosen no Michi - images HD.zip"><span class="sceau" aria-hidden="true">⤓</span><span id="hd-lib">Télécharger toutes les images en HD</span></a>
-    <p id="hd-etat" aria-live="polite" hidden></p>
-    <p class="titre-musique">Yugen, Keys of Moon</p>
+    <p class="titre-musique">Keys Of Moon - Yugen, sous licence <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">Creative Commons BY 3.0</a>.<br>Musique fournie par <a href="https://breakingcopyright.com" target="_blank" rel="noopener">BreakingCopyright</a>.</p>
   </div>
   <div class="rouleau"></div>
 </section>
@@ -1069,7 +1071,14 @@ function zipStocke(fichiers){
   return new Blob([...parts,...central,fin],{type:"application/zip"});
 }
 const btnHd=document.getElementById("btn-hd"),hdEtat=document.getElementById("hd-etat");
-const hdMsg=m=>{hdEtat.hidden=!m;hdEtat.textContent=m||"";};
+let hdMinuteur=0;
+const hdMsg=m=>{
+  clearTimeout(hdMinuteur);hdEtat.hidden=!m;hdEtat.textContent=m||"";
+  if(m)hdEtat.style.bottom=(innerHeight-btnHd.getBoundingClientRect().top+10)+"px";
+  /* Le message flotte au-dessus du livre : seul ce qui est en cours (« … ») reste affiché */
+  if(m&&!m.endsWith("…"))hdMinuteur=setTimeout(()=>hdMsg(""),6000);
+};
+btnHd.addEventListener("keydown",e=>{if(e.key===" "){e.preventDefault();btnHd.click();}});
 btnHd.addEventListener("click",async e=>{
   if(location.protocol==="file:"){hdMsg("Si rien ne se passe, le fichier ZIP n’est plus à côté du livre.");return;}
   e.preventDefault();
