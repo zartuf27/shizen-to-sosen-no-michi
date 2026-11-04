@@ -8,4 +8,6 @@ Le lire : https://zartuf27.github.io/shizen-to-sosen-no-michi/
 
 Le dossier `hd/` contient les 34 illustrations en haute définition. Le menu **Son** du livre permet aussi de toutes les télécharger d'un coup.
 
+Musique : *Yugen*, Keys of Moon.
+
 Illustrations générées en local avec Flux 2 Klein (licence non commerciale). Projet de fan, sans but commercial.
