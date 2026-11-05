@@ -795,7 +795,8 @@ function tourne(ver,vitesse=1){
   if(ver===pos&&!enAnim)return;
   sens=ver>=pos?1:-1;dep=pos;cible=ver;tDep=performance.now()/1000;
   const n=Math.abs(ver-pos);
-  dureeAnim=REDUIT?.01:(LENT*Math.max(.35,Math.min(1,n))+Math.max(0,n-1)*1.1)*vitesse;
+  /* La feuille tourne pour tout le monde, même si Windows ou le téléphone demande moins d'animations : c'est le lecteur qui la déclenche */
+  dureeAnim=(LENT*Math.max(.35,Math.min(1,n))+Math.max(0,n-1)*1.1)*vitesse;
   enAnim=true;bruitFeuille(Math.min(1,n));
 }
 function va(n){
@@ -946,7 +947,7 @@ addEventListener("pointerup",e=>{
     const ver=clamp(sens>0?Math.ceil(pos-.18):Math.floor(pos+.18),0,NF);
     const n=ver===0?0:ver*2-1;
     if(unique){page=ver===0?0:(sens>0?ver*2-1:ver*2);if(page>TOTAL)page=TOTAL;}else page=n;
-    sens=ver>=g.p0?1:-1;dep=pos;cible=ver;tDep=performance.now()/1000;dureeAnim=REDUIT?.01:Math.max(.9,LENT*Math.abs(ver-pos));enAnim=true;barre();demarreParticules();majAmbiance();
+    sens=ver>=g.p0?1:-1;dep=pos;cible=ver;tDep=performance.now()/1000;dureeAnim=Math.max(.9,LENT*Math.abs(ver-pos));enAnim=true;barre();demarreParticules();majAmbiance();
     return;
   }
   const r=salle.getBoundingClientRect(),m=r.left+r.width/2;
